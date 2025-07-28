@@ -1,0 +1,28 @@
+[project]
+name = "bwav-otio-composer"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "drunkenQCat", email = "songjh123123@outlook.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.1.8",
+    "opentimelineio>=0.17.0",
+    "pydantic>=2.10.4",
+    "pytest>=8.3.4",
+    "wavinfo>=3.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[project.scripts]
+bwav-otio-composer = "bwav_otio_composer:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
