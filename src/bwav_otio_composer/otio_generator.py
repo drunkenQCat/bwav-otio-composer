@@ -100,7 +100,10 @@ def make_otio(
         timeline.tracks.append(track)
 
     # 输出 OTIO 文件
-    otio.adapters.write_to_file(timeline, f"{output}.otio")
+    if output.lower().endswith(".otio"):
+        otio.adapters.write_to_file(timeline, output)
+    else:
+        otio.adapters.write_to_file(timeline, f"{output}.otio")
     logger.info("Finished!!")
 
 
