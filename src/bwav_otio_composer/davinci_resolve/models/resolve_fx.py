@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 import json
 from typing import List, Dict, Union, Optional
+import importlib.resources
 
 
 class KeyFrame(BaseModel):
@@ -58,9 +59,7 @@ default_video_fxs = None
 def load_default_audio_fxs() -> EffectList:
     global default_audio_fxs
     if default_audio_fxs is None:
-        with open(
-            "src/bwav_otio_composer/davinci_resolve/default_data/audio_fxs.json", "r", encoding="utf-8"
-        ) as file:
+        with importlib.resources.files("bwav_otio_composer.davinci_resolve.default_data").joinpath("audio_fxs.json").open("r", encoding="utf-8") as file:
             json_data = json.load(file)
         default_audio_fxs = EffectList.model_validate(json_data)  # type: ignore
     return default_audio_fxs
@@ -70,11 +69,7 @@ def load_default_audio_fxs() -> EffectList:
 def load_default_video_fxs() -> EffectList:
     global default_video_fxs
     if default_video_fxs is None:
-        with open(
-            "src/bwav_otio_composer/davinci_resolve/default_data/video_fxs.json",
-            "r",
-            encoding="utf-8",
-        ) as file:
+        with importlib.resources.files("bwav_otio_composer.davinci_resolve.default_data").joinpath("video_fxs.json").open("r", encoding="utf-8") as file:
             json_data = json.load(file)
         default_video_fxs = EffectList.model_validate(json_data)  # type: ignore
     return default_video_fxs
